@@ -20,7 +20,7 @@ Body:   {}
 
 Method: POST
 Path:   /api/persons
-Body:   { phonename: 'Helena Takalo', phonenumber: '040-666622' }
+Body:   { name: 'Helena Takalo', number: '040-666622' }
 ---
 Helena Takalo
 040-666622
@@ -38,7 +38,7 @@ morgan.token('body', (req, res) => JSON.stringify(req.body));
 app.use(morgan(':method :url :status :response-time ms - :res[content-length] :body - :req[content-length]'));
 
 /* GET /api/persons 200 102.905 ms - 329 {} - -  */
-/* POST /api/persons 200 48.755 ms - 64 {"phonename":"Helena Takalo","phonenumber":"040-666622"} - 72 */
+/* POST /api/persons 200 48.755 ms - 64 {"name":"Helena Takalo","number":"040-666622"} - 72 */
 
 
 //app.use(morgan('tiny'))
@@ -81,28 +81,28 @@ app.use(requestLogger)
 let persons = [
     {
       id: 1,
-      phonename: "Arto Hellas",
-      phonenumber: "040-123456"
+      name: "Arto Hellas",
+      number: "040-123456"
     },
     {
       id: 2,
-      phonename: "Ada Lovelace",
-      phonenumber: "39-44-5323523"
+      name: "Ada Lovelace",
+      number: "39-44-5323523"
     },
     {
       id: 3,
-      phonename: "Dan Abramov",
-      phonenumber: "12-43-234345"
+      name: "Dan Abramov",
+      number: "12-43-234345"
     },
     {
       id: 4,
-      phonename: "Mary Poppendieck",
-      phonenumber: "39-23-6423122"
+      name: "Mary Poppendieck",
+      number: "39-23-6423122"
     },
     {
       id: 5,
-      phonename: "Jukka Vilhunen",
-      phonenumber: "050-3002111"
+      name: "Jukka Vilhunen",
+      number: "050-3002111"
     }
 ]
 
@@ -147,30 +147,30 @@ app.delete('/api/persons/:id', (request, response) => {
 app.post('/api/persons', (request, response) => {
   const body = request.body
 
-  console.log(body.phonename)
-  console.log(body.phonenumber)
+  console.log(body.name)
+  console.log(body.number)
 
-  if (!body.phonename) {
+  if (!body.name) {
     return response.status(400).json({ 
-      error: 'phonename missing' 
+      error: 'name missing' 
     })
   }
 
-  if (!body.phonenumber) {
+  if (!body.number) {
     return response.status(400).json({ 
-      error: 'phonenumber missing' 
+      error: 'number missing' 
     })
   }
 
-  if (persons.filter(e => e.phonename === body.phonename).length > 0) {
+  if (persons.filter(e => e.name === body.name).length > 0) {
     return response.status(400).json({ 
-      error: `${body.phonename} is already added to phonebook` 
+      error: `${body.name} is already added to phonebook` 
     })
   }
 
   const person = {    
-    phonename: body.phonename,
-    phonenumber: body.phonenumber,
+    name: body.name,
+    number: body.number,
     id: randomNumberInRange(10, 100)
   }
 

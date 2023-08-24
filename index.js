@@ -1,6 +1,7 @@
 const express = require('express')
 const morgan = require('morgan')
 const app = express()
+const cors = require('cors')
 
 
 
@@ -30,6 +31,7 @@ const unknownEndpoint = (request, response) => {
   response.status(404).send({ error: 'unknown endpoint' })
 }
 
+app.use(cors())
 app.use(express.json())
 
 
@@ -76,7 +78,7 @@ if (req.method === "POST") {
 
 
 app.use(requestLogger)
-
+app.use(express.static('dist'))
 
 let persons = [
     {
@@ -195,7 +197,8 @@ const generateId = () => {
 
 app.use(unknownEndpoint)
 
-const PORT = 3001
+//const PORT = 3001
+const PORT = process.env.PORT || 3001
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`)
 })

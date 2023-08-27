@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script language="JavaScript"> 
+<!--
+/*
+The lenght of the phone number string is at least 8 characters with '-' chars
+1st part has 2 or 3 number
+the second part has at least 4 numbers
+1 pcs hyphen character (-)
+09-1234556 is legal
+040-22334455 is legal
+1234556 is illegal
+1-22334455 is illegal
+10-22-334455 is illegal
+*/
+
+const endFunction = (phonenumber) => {
+  var retval = "";
+  var phonenum = phonenumber;
+  var a = 0;
+  var numcount = 0;
+  var hyphencount = 0;
+  var hyphenindex = 0;
+  var notnumnothypencount = 0;
+  var len = phonenum.length;
+
+  for(a=0;a<phonenum.length;a++)
+  {
+    if(phonenum[a] == '-')
+    {
+      hyphencount++;
+      hyphenindex = a;
+    }
+    else if (phonenum[a] >= '0' && phonenum[a] <= '9')
+    {      
+      numcount++;
+    }
+    else
+    {      
+      notnumnothypencount++;
+    }
+  }
+
+  if(len > 7 && notnumnothypencount == 0 && numcount > 6 && hyphencount == 1 && (hyphenindex == 2 || hyphenindex == 3))
+  {
+    retval = 1;
+  }
+  else
+  {
+    retval = 0;
+  }
+  return retval;
+};
+
+
+const startFunction = () => {
+  var tststr = "050-3002111";
+  var result = endFunction(tststr);
+  document.getElementById("demo").innerHTML = result;
+}
+
+
+
+/*
+
+function endFunction(phonenumber)
+{
+  var retval = "";
+  var phonenum = phonenumber;
+  var a = 0;
+  var numcount = 0;
+  var hyphencount = 0;
+  var hyphenindex = 0;
+  var notnumnothypencount = 0;
+  var len = phonenum.length;
+
+  for(a=0;a<phonenum.length;a++)
+  {
+    if(phonenum[a] == '-')
+    {
+      hyphencount++;
+      hyphenindex = a;
+    }
+    else if (phonenum[a] >= '0' && phonenum[a] <= '9')
+    {      
+      numcount++;
+    }
+    else
+    {      
+      notnumnothypencount++;
+    }
+  }
+
+  if(len > 7 && notnumnothypencount == 0 && numcount > 6 && hyphencount == 1 && (hyphenindex == 2 || hyphenindex == 3))
+  {
+    retval = 1;
+  }
+  else
+  {
+    retval = 0;
+  }
+  return retval;
+}
+
+
+function startFunction()
+{
+var tststr = "050-3002111";
+var result = endFunction(tststr);
+document.getElementById("demo").innerHTML = result;
+}
+*/
+
+//-->
+</script>
+
+<style>
+</style>
+
+</head>
+<body onload="startFunction();">
+<h1>Test Page</h1>
+<p id="demo"></p>
+</body>
+</html>

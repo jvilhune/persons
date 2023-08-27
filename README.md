@@ -1,14 +1,12 @@
 
 Syväsukellus moderniin websovelluskehitykseen
 Full Stack open
-OSA 3. Sovellus Internetiin
-Tehtävät 3.9.-3.11.
+OSA 3. Kaikki tehtavat osan loppuun (-3.22)
 https://fullstackopen.com/osa3
 
-YHDISTETTY BACKEND/FRONTEND OHJELMISTO LADATTUNA INTERNETISSA OSOITTEESSA
+YHDISTETTY BACKEND/FRONTEND OHJELMISTO LADATTUNA INTERNETISSA SEURAAVASSA OSOITTEESSA
 SELAIMELLA VOIDAAN OTTAA YHTEYS SEURAAVAAN OSOITTEESEEN
 https://nameless-glade-7276.fly.dev/
-
 
 FRONTEND OHJELMISTON KOODIT
 https://github.com/jvilhune/part6

@@ -2,9 +2,9 @@ const mongoose = require('mongoose')
 
 mongoose.set('strictQuery', false)
 
-/* mongoose library cant't read the url from the .env file because there is '&' character in the url */
-//const url = process.env.MONGODB_URI
-const url = `mongodb+srv://jvmongodb:opto4646asdf@cluster0.dvmusb2.mongodb.net/?retryWrites=true&w=majority`
+/* Cant't read this url from the .env file because there is '&' character in the url */
+/* Replace process.env.MONGODB_URI with direct url and .env file no needed */
+const url = process.env.MONGODB_URI
 
 console.log('connecting to', url)
 

@@ -20,7 +20,8 @@
     "express": "^4.18.2",
     "mongodb": "^5.8.1",
     "mongoose": "^7.4.5",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "nodemailer": "^6.9.12"
   },
   "devDependencies": {
     "@flydotio/dockerfile": "^0.4.8",

@@ -107,6 +107,8 @@ app.post('/api/persons', (request, response, next) => {
   console.log(body.name)
   console.log(body.number)
 
+sendEmailmsg('jukka.vilhunen@hotmail.com', 'jukka.vilhunen65@gmail.com', '666', 'This is the test message')
+
   if (!body.name) {
     return response.status(400).json({ 
       error: 'name missing' 
@@ -156,6 +158,41 @@ app.put('/api/persons/:id', (request, response, next) => {
     .catch(error => next(error))
 })
 
+
+const sendEmailmsg = (receiver, seller, ordernum, message) => {
+  const nodemailer = require('nodemailer');
+
+  let transporter = nodemailer.createTransport({
+    host: 'whm52.louhi.net',
+    //vastaanottaja jukka.vilhunen@hotmail.com toimii molemmilla vaihtoehdoilla
+    //vastaanottaja jukka.vilhunen65@gmail.com ei toimi kummallakaan vaihtoehdolla
+    //Gmail requires all senders to authenticate with either SPF or DKIM
+    //port: 587,
+    //secure: false,
+    port: 465,
+    secure: true,
+    requireTLS: true,
+    auth: {
+      user: 'jukka.vilhunen@jvrecords.fi',
+      pass: 'optoASDFG'
+    }
+  });
+
+  let mailOptions = {
+   from: 'jukka.vilhunen@jvrecords.fi',
+   to: seller,
+   cc: receiver,
+   subject: ("Cart " + ordernum),
+   text: message
+  };
+
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+       return console.log(error);
+    }
+    console.log('Message sent: ' + info.response);
+  });
+}
 
 function randomNumberInRange(min, max) {
   //  get number between min and max
